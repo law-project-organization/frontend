@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import api from "@/api/BaseApi";  
-
-const pointBlue = "#2563eb"; // tailwind blue-600 계열
+import api from "@/api/BaseApi";
+import "./Login.css";
 
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -23,13 +22,12 @@ export default function Login() {
 
     setLoading(true);
     try {
-      // 실제 엔드포인트 명확히 알면 경로 수정 (예: /auth/login)
-      await api.post("/auth/login", {
+      await api.post("/api/v1/auth/login", {
         username: form.username,
         password: form.password,
       });
       setMsg("로그인 성공!");
-      // 로그인 성공 후 리다이렉트, 상태 관리 등 추가 구현 가능
+      // 로그인 성공 후 리다이렉트 등 추가 구현 가능
     } catch (err) {
       setMsg("로그인 실패: " + (err?.message || "에러"));
     } finally {
@@ -38,30 +36,9 @@ export default function Login() {
   };
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      background: "#fff",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    }}>
-      <form onSubmit={handleLogin} style={{
-        width: 320,
-        padding: 32,
-        borderRadius: 16,
-        boxShadow: "0 6px 24px rgba(0,0,0,0.07)",
-        background: "#fff",
-        display: "flex",
-        flexDirection: "column",
-        gap: 20
-      }}>
-        <h2 style={{
-          color: pointBlue,
-          fontWeight: 700,
-          fontSize: 28,
-          textAlign: "center"
-        }}>로그인</h2>
+    <div className="login-bg">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2 className="login-title">로그인</h2>
         <input
           name="username"
           type="text"
@@ -69,13 +46,7 @@ export default function Login() {
           autoComplete="username"
           value={form.username}
           onChange={handleChange}
-          style={{
-            padding: "12px 16px",
-            border: `1.5px solid ${pointBlue}`,
-            borderRadius: 8,
-            fontSize: 16,
-            outline: "none"
-          }}
+          className="login-input"
           disabled={loading}
         />
         <input
@@ -85,40 +56,25 @@ export default function Login() {
           autoComplete="current-password"
           value={form.password}
           onChange={handleChange}
-          style={{
-            padding: "12px 16px",
-            border: `1.5px solid ${pointBlue}`,
-            borderRadius: 8,
-            fontSize: 16,
-            outline: "none"
-          }}
+          className="login-input"
           disabled={loading}
         />
         <button
           type="submit"
-          style={{
-            background: pointBlue,
-            color: "#fff",
-            border: "none",
-            borderRadius: 8,
-            padding: "14px 0",
-            fontWeight: 600,
-            fontSize: 18,
-            letterSpacing: 1,
-            cursor: "pointer",
-            opacity: loading ? 0.5 : 1
-          }}
+          className="login-btn"
           disabled={loading}
         >
           {loading ? "로그인 중..." : "로그인"}
         </button>
         {msg && (
-          <div style={{
-            color: msg.includes("성공") ? pointBlue : "crimson",
-            marginTop: 10,
-            textAlign: "center",
-            fontWeight: 500
-          }}>{msg}</div>
+          <div
+            className={
+              "login-msg " +
+              (msg.includes("성공") ? "success" : "error")
+            }
+          >
+            {msg}
+          </div>
         )}
       </form>
     </div>

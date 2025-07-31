@@ -1,0 +1,68 @@
+/* Join.css */
+
+.join-bg {
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.join-form {
+  width: 320px;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.join-title {
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+}
+
+.join-input {
+  padding: 12px 16px;
+  border: 1.5px solid #2563eb;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.join-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 0;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.join-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.join-msg {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.join-msg.success {
+  color: #2563eb;
+}
+
+.join-msg.error {
+  color: crimson;
+}
