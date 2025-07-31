@@ -1,12 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./MainPage.css"; // css 파일 import
+import "@/css/MainPage.css"; // css 파일 import
+
+const videoUrl = "/mainBackgroundVideo.mp4"; // 비디오 파일 경로 추후 추가 가능
 
 function MainPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="mainpage-bg">
+  
+    // 배경 비디오
+    <div className="mainpage-bg">        
+      <video
+        className="mainpage-bg-video"
+        src={videoUrl}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
       <div className="mainpage-card">
         <h1 className="mainpage-title">Welcome!</h1>
         <div className="mainpage-desc">
