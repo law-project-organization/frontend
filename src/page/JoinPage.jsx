@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import api from "@/api/BaseApi";
-import "./Join.css";
+import "@/css/JoinPage.css";
 
 export default function Join() {
   const [form, setForm] = useState({
