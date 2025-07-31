@@ -1,0 +1,12 @@
+{
+	"name": "Node.js Alpine DevContainer",
+	"image": "node:22-bullseye",
+	"features": {
+	},
+	"forwardPorts": [
+		3000,
+		5173
+	],
+	"postCreateCommand": "npm install",
+	"remoteUser": "node"
+}
