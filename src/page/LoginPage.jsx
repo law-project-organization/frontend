@@ -1,49 +1,37 @@
 import React, { useState } from "react";
-import api from "../api/baseApi"; // baseApi 경로에 따라 수정
+import api from "@/api/BaseApi";  
 
-const pointBlue = "#2563eb"; // tailwind 'blue-600' 계열
+const pointBlue = "#2563eb"; // tailwind blue-600 계열
 
-export default function Join() {
-  const [form, setForm] = useState({
-    username: "",
-    password: "",
-    passwordCheck: "",
-  });
+export default function Login() {
+  const [form, setForm] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
-  // 입력값 변경 핸들러
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // 회원가입 요청
-  const handleJoin = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setMsg("");
 
-    // 간단한 유효성 검사
-    if (!form.username || !form.password || !form.passwordCheck) {
-      setMsg("모든 항목을 입력하세요.");
-      return;
-    }
-    if (form.password !== form.passwordCheck) {
-      setMsg("비밀번호가 일치하지 않습니다.");
+    if (!form.username || !form.password) {
+      setMsg("아이디와 비밀번호를 모두 입력하세요.");
       return;
     }
 
     setLoading(true);
     try {
-      // 실제 API 주소 맞게 수정 (예시: /auth/join)
-      await api.post("/auth/join", {
+      // 실제 엔드포인트 명확히 알면 경로 수정 (예: /auth/login)
+      await api.post("/auth/login", {
         username: form.username,
         password: form.password,
       });
-      setMsg("회원가입이 완료되었습니다!");
-      setForm({ username: "", password: "", passwordCheck: "" });
+      setMsg("로그인 성공!");
+      // 로그인 성공 후 리다이렉트, 상태 관리 등 추가 구현 가능
     } catch (err) {
-      // 에러 메시지 세팅
-      setMsg(err?.message || "회원가입 실패");
+      setMsg("로그인 실패: " + (err?.message || "에러"));
     } finally {
       setLoading(false);
     }
@@ -58,7 +46,7 @@ export default function Join() {
       alignItems: "center",
       justifyContent: "center"
     }}>
-      <form onSubmit={handleJoin} style={{
+      <form onSubmit={handleLogin} style={{
         width: 320,
         padding: 32,
         borderRadius: 16,
@@ -73,7 +61,7 @@ export default function Join() {
           fontWeight: 700,
           fontSize: 28,
           textAlign: "center"
-        }}>회원가입</h2>
+        }}>로그인</h2>
         <input
           name="username"
           type="text"
@@ -94,24 +82,8 @@ export default function Join() {
           name="password"
           type="password"
           placeholder="비밀번호"
-          autoComplete="new-password"
+          autoComplete="current-password"
           value={form.password}
-          onChange={handleChange}
-          style={{
-            padding: "12px 16px",
-            border: `1.5px solid ${pointBlue}`,
-            borderRadius: 8,
-            fontSize: 16,
-            outline: "none"
-          }}
-          disabled={loading}
-        />
-        <input
-          name="passwordCheck"
-          type="password"
-          placeholder="비밀번호 확인"
-          autoComplete="new-password"
-          value={form.passwordCheck}
           onChange={handleChange}
           style={{
             padding: "12px 16px",
@@ -138,11 +110,11 @@ export default function Join() {
           }}
           disabled={loading}
         >
-          {loading ? "가입 중..." : "회원가입"}
+          {loading ? "로그인 중..." : "로그인"}
         </button>
         {msg && (
           <div style={{
-            color: msg.includes("완료") ? pointBlue : "crimson",
+            color: msg.includes("성공") ? pointBlue : "crimson",
             marginTop: 10,
             textAlign: "center",
             fontWeight: 500

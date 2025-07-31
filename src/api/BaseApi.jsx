@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api';
+const BASE_URL = 'http://localhost:8080/api'; // process.env.REACT_APP_API_BASE_URL ||
 
 // 공통 fetch wrapper
 async function request(method, url, { data, params, headers = {}, ...customConfig } = {}) {
@@ -16,7 +16,7 @@ async function request(method, url, { data, params, headers = {}, ...customConfi
       'Content-Type': 'application/json',
       ...headers,
     },
-    credentials: 'include', // << 쿠키 자동 첨부!
+    credentials: 'include', // 쿠키 자동 첨부
     ...customConfig,
   };
 
