@@ -26,14 +26,12 @@ export default function LoginForm() {
 
     setLoading(true);
     try {
-      const res = await api.post("/auth/login", {
+        await api.post("/auth/login", {
         email: form.email,
         password: form.password,
       });
       setMsg("로그인 성공!");
       // 로그인 성공 후 리다이렉트 등 추가 구현 가능
-      console.log(res)
-
       navigate("/");
   
     } catch (err) {
