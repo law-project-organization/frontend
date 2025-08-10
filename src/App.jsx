@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import MainPage from "@/page/MainPage";
-import LoginPage from "@/page/LoginPage";
-import JoinPage from "@/page/JoinPage";
+import LoginFormPage from "@/page/LoginFormPage";
+import JoinFormPage from "@/page/JoinFormPage";
 import LawsuitFormPage from "@/page/LawsuitFormPage"; 
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/join" element={<JoinPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/join" element={<JoinFormPage />} />
+          <Route path="/login" element={<LoginFormPage />} />
           <Route path="/lawsuit" element={<LawsuitFormPage />} />
         </Routes>
       </div>

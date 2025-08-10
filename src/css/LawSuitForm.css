@@ -1,0 +1,53 @@
+.law-suit-form-container {
+  margin-top: 20px;
+}
+
+.law-suit-form {
+  display: grid;
+  gap: 12px;
+}
+
+.law-suit-input {
+  display: grid;
+  gap: 12px;
+}
+
+.law-suit-label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.law-suit-input-field,
+.law-suit-textarea {
+  padding: 10px 12px;
+  border: 1px solid #d6d6d6;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.law-suit-textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.law-suit-input-field:focus,
+.law-suit-textarea:focus {
+  border-color: #7aa7ff;
+  box-shadow: 0 0 0 3px rgba(122, 167, 255, 0.2);
+}
+
+.law-suit-submit-btn {
+  padding: 12px 16px;
+  background: #2f6efc;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.law-suit-submit-btn:hover {
+  background: #2559cc;
+}
