@@ -4,11 +4,13 @@ import LoginFormPage from "@/page/LoginFormPage";
 import JoinFormPage from "@/page/JoinFormPage";
 import LawsuitFormPage from "@/page/LawsuitFormPage";
 import MainPage from "@/page/MainPage";
+import NavBar from "@/component/NavBar";
 
 function App() {
   return (
     <div>
       <div>
+        <NavBar />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/welcome" element={<WelcomePage />} />

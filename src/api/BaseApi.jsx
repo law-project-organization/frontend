@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080/api'; // process.env.REACT_APP_API_BASE_URL ||
+const BASE_URL = 'http://localhost:8080/api/v1'; // process.env.REACT_APP_API_BASE_URL ||
 
 // 공통 fetch wrapper
 async function request(method, url, { data, params, headers = {}, ...customConfig } = {}) {

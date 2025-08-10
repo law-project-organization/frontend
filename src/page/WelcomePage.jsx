@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "@/css/MainPage.css"; // css 파일 import
 
-const videoUrl = "/mainBackgroundVideo.mp4"; // 비디오 파일 경로 추후 추가 가능
+const videoUrl = "/mainBackGroundVideo.mp4"; // 비디오 파일 경로 추후 추가 가능
 
 function WelcomePage() {
   const navigate = useNavigate();

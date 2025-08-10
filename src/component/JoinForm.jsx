@@ -4,7 +4,7 @@ import "@/css/JoinPage.css";
 
 export default function JoinForm() {
   const [form, setForm] = useState({
-    username: "",
+    email: "",
     password: "",
     passwordCheck: "",
   });
@@ -19,7 +19,7 @@ export default function JoinForm() {
     e.preventDefault();
     setMsg("");
 
-    if (!form.username || !form.password || !form.passwordCheck) {
+    if (!form.email || !form.password || !form.passwordCheck) {
       setMsg("모든 항목을 입력하세요.");
       return;
     }
@@ -30,12 +30,13 @@ export default function JoinForm() {
 
     setLoading(true);
     try {
-      await api.post("/api/v1/auth/join", {
-        username: form.username,
+      await api.post("/auth/join", {
+        email: form.email,
         password: form.password,
+        passwordCheck : form.passwordCheck
       });
       setMsg("회원가입이 완료되었습니다!");
-      setForm({ username: "", password: "", passwordCheck: "" });
+      setForm({ email: "", password: "", passwordCheck: "" });
     } catch (err) {
       setMsg(err?.message || "회원가입 실패");
     } finally {
@@ -48,11 +49,11 @@ export default function JoinForm() {
       <form className="join-form" onSubmit={handleJoin}>
         <h2 className="join-title">회원가입</h2>
         <input
-          name="username"
+          name="email"
           type="text"
-          placeholder="아이디"
-          autoComplete="username"
-          value={form.username}
+          placeholder="이메일"
+          autoComplete="email"
+          value={form.email}
           onChange={handleChange}
           className="join-input"
           disabled={loading}

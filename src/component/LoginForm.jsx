@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import api from "@/api/BaseApi";
 import "@/css/LoginPage.css";
 
 export default function LoginForm() {
-  const [form, setForm] = useState({ username: "", password: "" });
+
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -15,19 +19,23 @@ export default function LoginForm() {
     e.preventDefault();
     setMsg("");
 
-    if (!form.username || !form.password) {
+    if (!form.email || !form.password) {
       setMsg("아이디와 비밀번호를 모두 입력하세요.");
       return;
     }
 
     setLoading(true);
     try {
-      await api.post("/api/v1/auth/login", {
-        username: form.username,
+      const res = await api.post("/auth/login", {
+        email: form.email,
         password: form.password,
       });
       setMsg("로그인 성공!");
       // 로그인 성공 후 리다이렉트 등 추가 구현 가능
+      console.log(res)
+
+      navigate("/");
+  
     } catch (err) {
       setMsg("로그인 실패: " + (err?.message || "에러"));
     } finally {
@@ -40,11 +48,11 @@ export default function LoginForm() {
       <form className="login-form" onSubmit={handleLogin}>
         <h2 className="login-title">로그인</h2>
         <input
-          name="username"
+          name="email"
           type="text"
           placeholder="아이디"
-          autoComplete="username"
-          value={form.username}
+          autoComplete="email"
+          value={form.email}
           onChange={handleChange}
           className="login-input"
           disabled={loading}
