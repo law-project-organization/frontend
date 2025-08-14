@@ -13,7 +13,7 @@ export default function NavBar() {
     try {
       await fetch("/auth/logout", {
         method: "GET",
-        credentials: "include", // HttpOnly 쿠키 동봉
+        credentials: "include", // HttpOnly 쿠키 동봉   
       });
     } catch (_) {
       // 네트워크 오류여도 UI는 로그아웃 처리
