@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "@/css/LawsuitForm.css";
+import "@/css/LawSuitForm.css";
 
 export default function LawsuitForm({ onSubmit }) {
   const [form, setForm] = useState({
