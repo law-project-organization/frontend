@@ -1,31 +1,43 @@
 import React, { useState } from "react";
-import LawsuitForm from "@/page/LawsuitForm";
+import LawsuitForm from "@/component/LawsuitForm";
+import LawsuitResultForm from "@/component/LawsuitResultForm";
+import "@/css/LawsuitFormPage.css";
 
-export default function App() {
-    const [result, setResult] = useState("");
+export default function LawsuitFormPage() {
+  const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [refs, setRefs] = useState([]);
 
-    const handleFormSubmit = (form) => {
-        setResult(
-            `▶️ [AI 자동 소장 예시]
-사건유형: ${form.caseType}
-사실관계: ${form.facts}
-청구취지: ${form.claims}
-첨부문서: ${form.attachments}
+  const handleFormSubmit = async (form) => {
+    setLoading(true);
+    setResult("");
+    setRefs([]);
+    try {
+      const resp = await fetch("http://localhost:8000/generate-complaint", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.detail || `HTTP ${resp.status}`);
+      }
+      const data = await resp.json();
+      setResult(data.result);
+      setRefs(data.references || []);
+    } catch (e) {
+      setResult(`에러: ${e.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-[AI가 자동 생성한 소장 예시]
-[...여기에 소장 내용이 생성되어 표시됩니다...]`
-        );
-    };
-
-    return (
-        <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "sans-serif" }}>
-            <h2>AI 소장 자동 작성 서비스</h2>
-            <LawsuitForm onSubmit={handleFormSubmit} />
-            {result && (
-                <div style={{ marginTop: 32, padding: 18, background: "#f8f8f8", borderRadius: 8 }}>
-                    <pre>{result}</pre>
-                </div>
-            )}
-        </div>
-    );
+  return (
+    <div className="app-container">
+      <h2>AI 소장 자동 작성 서비스</h2>
+      <LawsuitForm onSubmit={handleFormSubmit} />
+      {loading && <div className="loading-text">생성 중입니다...</div>}
+      {result && <LawsuitResultForm result={result} refs={refs} />}
+    </div>
+  );
 }

@@ -1,0 +1,11 @@
+.app-container {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: sans-serif;
+}
+
+.loading-text {
+  margin-top: 16px;
+  font-size: 14px;
+  opacity: 0.9;
+}

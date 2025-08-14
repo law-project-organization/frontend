@@ -1,18 +1,22 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import MainPage from "@/page/MainPage";
-import LoginPage from "@/page/LoginPage";
-import JoinPage from "@/page/JoinPage";
+import WelcomePage from "@/page/WelcomePage";
+import LoginFormPage from "@/page/LoginFormPage";
+import JoinFormPage from "@/page/JoinFormPage";
 import LawsuitFormPage from "@/page/LawsuitFormPage";
+import MainPage from "@/page/MainPage";
+import NavBar from "@/component/NavBar";
 
 function App() {
   return (
     <div>
       <div>
+        <NavBar />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/join" element={<JoinPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/law-suit-form" element={<LawsuitFormPage />} />
+          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/join" element={<JoinFormPage />} />
+          <Route path="/login" element={<LoginFormPage />} />
+          <Route path="/lawsuit" element={<LawsuitFormPage />} />
         </Routes>
       </div>
     </div>

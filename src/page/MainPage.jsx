@@ -5,8 +5,7 @@ import "@/css/MainPage.css"; // css 파일 import
 
 const videoUrl = "/kovico.mp4"; // 비디오 파일 경로 추후 추가 가능 // mainBackgroundVideo.mp4
 
-function MainPage() {
-  const navigate = useNavigate();
+const MainPage = () => {
 
   // 카카오톡 소셜 로그인 클릭 핸들러
   const handleKakaoLogin = async () => {
