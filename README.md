@@ -1,5 +1,6 @@
-<<<<<<< HEAD
+
 # Frontend
+
 
 추후 Page, Component 분리 
 =======
@@ -23,5 +24,3 @@
 - 소장 작성 AI 요청 API
 
 
-
->>>>>>> 77225b685c652350ba5cb0e3ace7323aefaffde4
