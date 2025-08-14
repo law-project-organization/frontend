@@ -88,3 +88,27 @@
   color: #2563eb;
   font-weight: 500;
 }
+
+/* 카카오톡 */
+.mainpage-kakao-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px auto 0 auto;
+  background: #fee500;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #3c1e1e;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: filter 0.12s;
+}
+.mainpage-kakao-btn:hover {
+  filter: brightness(0.92);
+}
+.mainpage-kakao-btn svg {
+  vertical-align: middle;
+}

@@ -1,16 +1,37 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { SiKakaotalk } from "react-icons/si";
 import "@/css/MainPage.css"; // css 파일 import
 
-const videoUrl = "/mainBackgroundVideo.mp4"; // 비디오 파일 경로 추후 추가 가능
+const videoUrl = "/kovico.mp4"; // 비디오 파일 경로 추후 추가 가능 // mainBackgroundVideo.mp4
 
 function MainPage() {
   const navigate = useNavigate();
 
+  // 카카오톡 소셜 로그인 클릭 핸들러
+  const handleKakaoLogin = async () => {
+    try {
+      // GET 요청: Spring Boot 서버의 소셜 로그인 엔드포인트 (예: /api/v1/oauth2/kakao)
+      const res = await fetch("/api/v1/oauth/kakao");
+      if (!res.ok) throw new Error("카카오 로그인 요청 실패");
+      const data = await res.json();
+      // data.url에 리다이렉트할 카카오 인증 URL이 있다고 가정
+      if (data?.url) {
+        window.location.href = data.url; // 즉시 리다이렉트
+      } else {
+        alert("카카오 인증 URL이 없습니다.");
+      }
+    } catch (err) {
+      alert("카카오 로그인 중 오류가 발생했습니다: " + err.message);
+    }
+  };
+
   return (
-  
+
+
+
     // 배경 비디오
-    <div className="mainpage-bg">        
+    <div className="mainpage-bg">
       <video
         className="mainpage-bg-video"
         src={videoUrl}
@@ -41,11 +62,15 @@ function MainPage() {
             회원가입
           </button>
         </div>
-        <div className="mainpage-info">
-          <b>서비스 소개</b>: <br />
-          어쏘 변호사 월급 주기 아까우시죠? <br />
-          저희 서비스를 사용하시면 통장이 두꺼워집니다. <br />
-          <span className="mainpage-point">포인트 컬러는 블루!</span>
+        <div className="mainpage-info" >
+          <span>또는 바로 시작</span>
+          <button
+            className="mainpage-kakao-btn"
+            onClick={handleKakaoLogin}
+          >
+            {/* <SiKakaotalk size={24} style={{ verticalAlign: "middle" }} /> */}
+            <img src="/kakao_login_small.png" alt="kakaoLoginIcon" />
+          </button>
         </div>
       </div>
     </div>

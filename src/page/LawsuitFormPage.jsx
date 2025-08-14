@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LawsuitForm from "./page/LawsuitForm";
+import LawsuitForm from "@/page/LawsuitForm";
 
 export default function App() {
     const [result, setResult] = useState("");
