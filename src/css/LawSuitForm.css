@@ -1,53 +1,86 @@
-.law-suit-form-container {
-  margin-top: 20px;
+/* 컨테이너 */
+.law-suit-form-container, .lawsuit-form-container {
+  margin-top: 16px;
 }
 
-.law-suit-form {
+/* 폼 레이아웃 */
+.law-suit-form, .lawsuit-form {
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
-.law-suit-input {
+/* 필드 그룹 */
+.law-suit-input, .field {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
-.law-suit-label {
-  display: grid;
-  gap: 6px;
+/* 라벨 */
+.law-suit-label, .label {
+  display: block;
   font-size: 14px;
+  font-weight: 600;
+  color: #111827;
 }
 
-.law-suit-input-field,
-.law-suit-textarea {
-  padding: 10px 12px;
-  border: 1px solid #d6d6d6;
-  border-radius: 6px;
+/* 입력 공통 (input/textarea/select) */
+.law-suit-input-field, .law-suit-textarea,
+.select, .input, .textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
   font-size: 14px;
+  background: #fff;
+  color: #111827;
   outline: none;
 }
 
-.law-suit-textarea {
+/* textarea */
+.law-suit-textarea, .textarea {
   resize: vertical;
+  min-height: 130px;
   line-height: 1.5;
 }
 
-.law-suit-input-field:focus,
-.law-suit-textarea:focus {
-  border-color: #7aa7ff;
-  box-shadow: 0 0 0 3px rgba(122, 167, 255, 0.2);
+/* select(브라우저 기본 보정) */
+select.law-suit-input-field, select.select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%),
+                    linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(50% - 3px),
+                       calc(100% - 12px) calc(50% - -3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
 }
 
-.law-suit-submit-btn {
-  padding: 12px 16px;
-  background: #2f6efc;
+/* 포커스 */
+.law-suit-input-field:focus, .law-suit-textarea:focus,
+.select:focus, .input:focus, .textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+}
+
+/* 버튼 */
+.law-suit-submit-btn, .submit-btn {
+  width: 100%;
+  padding: 14px 16px;
+  background: #4f46e5;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
+  transition: transform .02s ease, opacity .2s ease;
 }
+.law-suit-submit-btn:hover, .submit-btn:hover { opacity: 0.95; }
+.law-suit-submit-btn:active, .submit-btn:active { transform: translateY(1px); }
+.law-suit-submit-btn:disabled, .submit-btn:disabled { opacity: .6; cursor: not-allowed; }
 
-.law-suit-submit-btn:hover {
-  background: #2559cc;
+/* 반응형 여백 */
+@media (min-width: 768px) {
+  .law-suit-form, .lawsuit-form { gap: 18px; }
+  .law-suit-textarea, .textarea { min-height: 150px; }
 }
